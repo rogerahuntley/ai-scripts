@@ -1,0 +1,18 @@
+{
+  "name": "ai-scripts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "^0.5.0"
+  },
+  "scripts": {
+    "test-ai": "bun run ./src/scripts/test-ai.js",
+    "dogbribes": "bun run ./src/scripts/dogbribes.js",
+    "commandline": "bun run ./src/scripts/commandline.js"
+  },
+  "dependencies": {
+    "eslint": "^8.35.0",
+    "node-persist": "^3.1.3",
+    "openai": "^3.2.1",
+    "openai-edge": "^0.3.0"
+  }
+}
