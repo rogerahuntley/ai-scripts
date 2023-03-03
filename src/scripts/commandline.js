@@ -1,14 +1,22 @@
-import { simplePrompt } from "connect/connect.js";
+import { simplePrompt, commandPrompt } from "connect/connect.js";
 
 // eslint-disable-next-line no-unused-vars
 const [bun, script, ...args] = process.argv
 
+const Mode = {
+  PROMPT: 'prompt',
+  COMMAND: 'command'
+}
+
 const options = {
   max_tokens: 100,
-  temperature: 0.7
+  temperature: 0.7,
+  mode: Mode.PROMPT
 }
 
 const availableOptions = [
+  '-p', '--prompt',
+  '-c', '--command',
   '-m', '--max-tokens',
   '-t', '--temperature',
   '--short',
@@ -21,6 +29,19 @@ const availableOptions = [
 while(args.length > 0 && availableOptions.includes(args[0])) {
   const option = args.shift()
   switch(option) {
+    case '-p':
+    case '--prompt':
+      if(options.mode != Mode.PROMPT) {
+        console.log(`switching to prompt mode`)
+        options.mode = Mode.PROMPT
+      }
+      break
+    case '-c':
+    case '--command':
+      if(options.mode != Mode.COMMAND) {
+        options.mode = Mode.COMMAND
+      }
+      break
     case '-m':
     case '--max-tokens':
       options.max_tokens = args.shift()
@@ -51,16 +72,27 @@ while(args.length > 0 && availableOptions.includes(args[0])) {
       options.max_tokens = 4000
       console.log(`setting max tokens to: ${options.max_tokens}`)
       break
-    default:
-      break
   }
 }
 
 const prompt = args.join(" ")
 
-console.log(`prompt: ${prompt}`)
-console.log('sending prompt...')
+const chatOptions = {
+  max_tokens: options.max_tokens,
+  temperature: options.temperature,
+}
 
-const response = await simplePrompt(prompt, options)
-
-console.log(`response: ${response}`)
+switch(options.mode) {
+  case Mode.PROMPT: {
+    console.log(`prompt: ${prompt}`)
+    console.log('sending prompt...')
+    const response = await simplePrompt(prompt, chatOptions)
+    console.log(`response: ${response}`)
+    break
+  }
+  case Mode.COMMAND: {
+    const response = await commandPrompt(prompt, chatOptions)
+    console.log(`${response}`)
+    break
+  }
+}
