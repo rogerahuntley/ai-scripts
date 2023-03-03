@@ -1,4 +1,4 @@
-import * as storage from "node-persist"
+import storage from "node-persist"
 
 await storage.init({
   dir: "db",
@@ -11,4 +11,4 @@ const saveMessage = async (message) => {
   await storage.setItem("allMessages", allMessages)
 }
 
-export { saveMessage }
+export { saveMessage };

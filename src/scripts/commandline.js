@@ -1,7 +1,12 @@
-import { simplePrompt, commandPrompt } from "connect/connect.js";
+import { simplePrompt, commandPrompt } from "../connect/prompts.js";
+
+console.log(process.argv)
 
 // eslint-disable-next-line no-unused-vars
-const [bun, script, ...args] = process.argv
+const [bun, script, ..._args] = process.argv
+
+// sometimes the arguments are "-c echo 'hello world'", sometimes they're "['-c', 'echo', "'hello", "world'"]"
+let args = _args.join(" ").split(" ")
 
 const Mode = {
   PROMPT: 'prompt',

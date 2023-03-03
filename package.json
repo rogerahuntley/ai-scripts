@@ -1,19 +1,27 @@
 {
   "name": "ai-scripts",
   "type": "module",
-  "devDependencies": {
-    "bun-types": "^0.5.0"
-  },
   "scripts": {
-    "test-ai": "bun run ./src/scripts/test-ai.js",
-    "dogbribes": "bun run ./src/scripts/dogbribes.js",
-    "commandline": "bun run ./src/scripts/commandline.js"
+    "test-ai": "node ./src/scripts/test-ai.js",
+    "dogbribes": "node ./src/scripts/dogbribes.js",
+    "commandline": "node ./src/scripts/commandline.js"
   },
   "license": "MIT",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "eslint": "^8.35.0",
     "node-persist": "^3.1.3",
-    "openai": "^3.2.1",
-    "openai-edge": "^0.3.0"
-  }
+    "openai": "^3.2.1"
+  },
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerahuntley/ai-scripts.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/rogerahuntley/ai-scripts/issues"
+  },
+  "homepage": "https://github.com/rogerahuntley/ai-scripts#readme"
 }
