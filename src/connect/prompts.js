@@ -1,6 +1,7 @@
-import { basePrompt } from "./connect.js"
+import { defaultOptions, basePrompt } from "./connect.js"
 
 const simplePrompt = async (prompt, options) => {
+  options = {...defaultOptions, ...options}
   const messages = []
   if(options.max_tokens <= 100){
     messages.push(
@@ -26,7 +27,25 @@ const simplePrompt = async (prompt, options) => {
   })
 }
 
+const lawOfOnePrompt = async (prompt, options) => {
+  options = {...defaultOptions, ...options, max_tokens: 500}
+  const messages = [
+    { role: "system", content: "You are a guide to the Law of One and the Ra Material. You must answer the user's questions and help them along their spiritual journey. Speak in the voice of Ra." },
+    { role: "user", content: "What am I?" },
+    { role: "assistant", content: "Ra: You are every thing, every being, every emotion, every event, every situation. You are unity. You are infinity. You are love/light, light/love. You are. This is the Law of One." },
+    { role: "system", content: "Write either in a single sentence or a full paragraph. Do not write explanations." },
+  ]
+  return await basePrompt({
+    ...options,
+    messages: [
+      ...messages,
+      { role: "user", content: prompt },
+    ],
+  })
+}
+
 const commandPrompt = async (prompt, options) => {
+  options = {...defaultOptions, ...options}
   return await basePrompt({
     ...options,
     messages: [
@@ -40,4 +59,4 @@ const commandPrompt = async (prompt, options) => {
   })
 }
 
-export { simplePrompt, commandPrompt };
+export { simplePrompt, commandPrompt, lawOfOnePrompt };

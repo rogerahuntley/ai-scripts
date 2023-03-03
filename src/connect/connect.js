@@ -28,4 +28,4 @@ const basePrompt = async (options) => {
   return response.choices[0].message.content
 }
 
-export { basePrompt };
+export { defaultOptions, basePrompt };
