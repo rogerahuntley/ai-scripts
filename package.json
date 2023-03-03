@@ -9,6 +9,7 @@
     "dogbribes": "bun run ./src/scripts/dogbribes.js",
     "commandline": "bun run ./src/scripts/commandline.js"
   },
+  "license": "MIT",
   "dependencies": {
     "eslint": "^8.35.0",
     "node-persist": "^3.1.3",
