@@ -1,4 +1,4 @@
-import { lawOfOnePrompt } from "../connect/prompts.js";
+import { lawOfOnePrompt } from "../connect/prompts/index.js";
 
 const ra = await lawOfOnePrompt("tell me about spirit", {discord: true})
 

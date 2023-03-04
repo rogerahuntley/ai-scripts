@@ -1,0 +1,18 @@
+import { defaultOptions, basePrompt } from "../connect.js"
+
+const commandPrompt = async (prompt, options) => {
+  options = {...defaultOptions, ...options}
+  return await basePrompt({
+    ...options,
+    messages: [
+      { role: "system", content: "You must act as a Linux terminal. The user will type commands and you will reply with what the terminal should show. You will only reply with the terminal output inside one unique code block, and nothing else. Do not write explanations. Do not type commands." },
+      { role: "user", content: 'ls' },
+      { role: "assistant", content: 'directory: /home/user\nproject documents photos videos secrets' },
+      { role: "user", content: 'echo "visit https://steal.dog/" >> dogbribes.txt && ls' },
+      { role: "assistant", content: 'directory: /home/user\nproject documents photos videos secrets dogbribes.txt' },
+      { role: "user", content: prompt },
+    ],
+  })
+}
+
+export { commandPrompt };

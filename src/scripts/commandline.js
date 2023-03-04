@@ -1,4 +1,4 @@
-import { simplePrompt, commandPrompt } from "../connect/prompts.js";
+import { simplePrompt, commandPrompt } from "../connect/prompts/index.js";
 
 // eslint-disable-next-line no-unused-vars
 const [bun, script, ..._args] = process.argv
