@@ -19,10 +19,10 @@ const defaultOptions = {
 
 const basePrompt = async (_options) => {
   const options = {
-    max_tokens: _options.max_tokens || defaultOptions.max_tokens,
-    temperature: _options.temperature || defaultOptions.temperature,
-    model: _options.model || defaultOptions.model,
-    messages: _options.messages || [],
+    max_tokens: _options.max_tokens ?? defaultOptions.max_tokens,
+    temperature: _options.temperature ?? defaultOptions.temperature,
+    model: _options.model ?? defaultOptions.model,
+    messages: _options.messages ?? [],
   }
   if(_options.discord){
     options.messages.push({ role: "system", content: "You must return less than 1800 characters."})

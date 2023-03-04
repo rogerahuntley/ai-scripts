@@ -32,9 +32,11 @@ then, copy .env.example to .env and fill in the values
 
 #### options:
 
+note: you'll need to put a -- before the options to separate node args from script args
+
 you can change the max_tokens and temperature
 
-`npm run commandline <prompt> --max_tokens 100 --temperature 0.5`
+`npm run commandline -- --max_tokens 100 --temperature 0.5 <prompt>`
 
 alternatively, you can use the following flags:
 
@@ -50,7 +52,7 @@ alternatively, you can use the following flags:
 
 #### examples:
 
-`npm run commandline -c echo hello world`
+`npm run commandline -- -c echo hello world`
 
 -> "hello world"
 

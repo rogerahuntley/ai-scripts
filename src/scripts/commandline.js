@@ -80,22 +80,27 @@ while(args.length > 0 && availableOptions.includes(args[0])) {
 
 const prompt = args.join(" ")
 
-const chatOptions = {
-  max_tokens: options.max_tokens,
-  temperature: options.temperature,
-}
+try {
+  const chatOptions = {
+    max_tokens: parseFloat(options.max_tokens),
+    temperature: parseFloat(options.temperature),
+  }
 
-switch(options.mode) {
-  case Mode.PROMPT: {
-    console.log(`prompt: ${prompt}`)
-    console.log('sending prompt...')
-    const response = await simplePrompt(prompt, chatOptions)
-    console.log(`response: ${response}`)
-    break
+  switch(options.mode) {
+    case Mode.PROMPT: {
+      console.log(`prompt: ${prompt}`)
+      console.log('sending prompt...')
+      const response = await simplePrompt(prompt, chatOptions)
+      console.log(`response: ${response}`)
+      break
+    }
+    case Mode.COMMAND: {
+      const response = await commandPrompt(prompt, chatOptions)
+      console.log(`${response}`)
+      break
+    }
   }
-  case Mode.COMMAND: {
-    const response = await commandPrompt(prompt, chatOptions)
-    console.log(`${response}`)
-    break
-  }
+}
+catch(e) {
+  console.error(e)
 }
