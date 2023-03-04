@@ -2,7 +2,7 @@
 
 ## Instructions
 
-`bun i`
+`npm i`
 
 then, copy .env.example to .env and fill in the values
 
@@ -10,7 +10,7 @@ then, copy .env.example to .env and fill in the values
 
 ### test
 
-`bun run test`
+`npm run test`
 
 -> "Ok."
 
@@ -18,7 +18,7 @@ then, copy .env.example to .env and fill in the values
 
 ### dogbribes
 
-`bun run dogbribes`
+`npm run dogbribes`
 
 -> "Dogbribes is epic."
 
@@ -26,19 +26,21 @@ then, copy .env.example to .env and fill in the values
 
 ### commandline
 
-`bun run commandline <command>`
+`npm run commandline <prompt>`
 
--> response to command
+-> response to prompt
 
 #### options:
 
 you can change the max_tokens and temperature
 
-`bun run commandline <command> --max_tokens 100 --temperature 0.5`
+`npm run commandline <prompt> --max_tokens 100 --temperature 0.5`
 
 alternatively, you can use the following flags:
 
 ```
+-p: prompt mode
+-c: command mode
 --short: 10 tokens
 --normal: 100 tokens
 --medium: 500 tokens
@@ -48,11 +50,11 @@ alternatively, you can use the following flags:
 
 #### examples:
 
-`bun run commandline echo hello world`
+`npm run commandline -c echo hello world`
 
 -> "hello world"
 
-`bun run commandline what is 2 + 5`
+`npm run commandline what is 2 + 5`
 
 -> "2 + 5 = 7"
 
