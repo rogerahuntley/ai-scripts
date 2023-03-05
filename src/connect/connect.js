@@ -15,6 +15,8 @@ const defaultOptions = {
   max_tokens: 100,
   temperature: 0.7,
   model: process.env.USE_MODEL || 'gpt-3.5-turbo',
+  discord: false,     // adds character limit to 1800
+  saveMessage: false, // saves to super basic db folder
 }
 
 const basePrompt = async (_options) => {
@@ -31,7 +33,9 @@ const basePrompt = async (_options) => {
     ...options
   }).then(response => response.data)
 
-  saveMessage(response)
+  if(_options.saveMessage){
+    saveMessage(response)
+  }
   
   let botResponse = response.choices[0].message.content
 
