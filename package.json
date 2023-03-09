@@ -3,7 +3,6 @@
   "type": "module",
   "scripts": {
     "test": "node ./src/scripts/test-ai.js",
-    "ra": "node ./src/scripts/ra.js",
     "dogbribes": "node ./src/scripts/dogbribes.js",
     "commandline": "node ./src/scripts/commandline.js"
   },

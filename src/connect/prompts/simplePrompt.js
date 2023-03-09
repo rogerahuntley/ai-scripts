@@ -2,7 +2,13 @@ import { defaultOptions, basePrompt } from "../connect.js"
 
 const simplePrompt = async (prompt, options) => {
   options = {...defaultOptions, ...options}
-  const messages = []
+
+  const messages = options.messages || [{ role: "user", content: prompt }]
+
+  const lastMessage = messages.pop()
+  console.log(lastMessage, prompt)
+  console.assert(lastMessage.prompt == prompt, "Last message must be prompt")
+
   if(options.max_tokens <= 100){
     messages.push(
       { role: "system", content: "You only have to reply with one sentence. Do not write explanations. Do not type commands." },
@@ -14,15 +20,15 @@ const simplePrompt = async (prompt, options) => {
     )
   }
   if(options.max_tokens > 500){
-    messages.push(
-      { role: "system", content: `You have ${options.max_tokens}, try to optimize them.` },
-    )
+    // messages.push(
+    //   { role: "system", content: `You have ${options.max_tokens}, try to optimize them.` },
+    // )
   }
   return await basePrompt({
     ...options,
     messages: [
       ...messages,
-      { role: "user", content: prompt },
+      lastMessage,
     ],
   })
 }
