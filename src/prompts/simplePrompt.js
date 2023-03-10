@@ -1,4 +1,5 @@
-import { defaultOptions, basePrompt } from "../connect.js"
+import { defaultOptions } from "../connect/connect.js"
+import { basePrompt } from "./basePrompt.js"
 
 const simplePrompt = async (prompt, options) => {
   options = {...defaultOptions, ...options}
@@ -6,8 +7,7 @@ const simplePrompt = async (prompt, options) => {
   const messages = options.messages || [{ role: "user", content: prompt }]
 
   const lastMessage = messages.pop()
-  console.log(lastMessage, prompt)
-  console.assert(lastMessage.prompt == prompt, "Last message must be prompt")
+  console.assert(lastMessage.content == prompt, "Last message must be prompt")
 
   if(options.max_tokens <= 100){
     messages.push(
