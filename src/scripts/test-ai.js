@@ -1,4 +1,4 @@
-import { simplePrompt } from "../connect/prompts/index.js";
+import { simplePrompt } from "../prompts/index.js";
 
 const test = await simplePrompt("say 'ok'", { max_tokens: 2, temperature: 0})
 
