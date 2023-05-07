@@ -13,7 +13,7 @@ const openai = new OpenAIApi(configuration)
 const defaultOptions = {
   max_tokens: 100,
   temperature: 0.7,
-  model: process.env.USE_MODEL || 'gpt-3.5-turbo',
+  model: process.env.USE_MODEL || 'gpt-4',
   discord: false,     // adds character limit to 1800
   saveMessage: false, // saves to super basic db folder
 }
