@@ -9,20 +9,6 @@ const basePrompt = async (_options) => {
     messages: _options.messages ?? [],
     stream: true,
   };
-  if (_options.discord) {
-    if (_options.assistant) {
-      options.messages.push({
-        role: "system",
-        content:
-          "You must return less than 1800 characters unless you're providing some document (recipe, code, etc.)",
-      });
-    } else {
-      options.messages.push({
-        role: "system",
-        content: "You must return less than 1800 characters.",
-      });
-    }
-  }
 
   const axiosOptions = options.stream ? { responseType: "stream" } : {};
 
@@ -89,10 +75,6 @@ const basePrompt = async (_options) => {
     if (_options.saveMessage) {
       saveMessage(response);
     }
-  }
-
-  if (_options.discord && botResponse.length > 1800) {
-    botResponse = botResponse.substring(0, 1800);
   }
 
   if (_options.handleStream) {
