@@ -7,11 +7,10 @@ const basePrompt = async (_options) => {
     temperature: _options.temperature ?? defaultOptions.temperature,
     model: _options.model ?? defaultOptions.model,
     messages: _options.messages ?? [],
-    stream: true,
+    stream: !!_options.stream,
   };
 
   const axiosOptions = options.stream ? { responseType: "stream" } : {};
-
   const res = await openai.createChatCompletion(
     {
       ...options,
